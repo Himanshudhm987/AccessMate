@@ -1,4 +1,4 @@
-# AccessMate with Sign up, Sign in and SQLite database
+# AccessMate# AccessMate with Sign up, Sign in and SQLite database
 
 ## Requirements
 Node.js 20+ (Node 22 LTS recommended), npm.
