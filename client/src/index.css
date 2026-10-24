@@ -11,11 +11,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* WCAG 2.1 AA/AAA compliant focus visible outline */
+/* ==============================================================
+   ACCESSIBILITY FOCUS VISIBLE (Clean, Non-Irritating Focus Ring)
+   ============================================================== */
 *:focus-visible {
-  outline: 2px solid #00D2FF !important;
+  outline: 2px solid #0284C7 !important;
   outline-offset: 2px !important;
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25) !important;
+}
+
+.theme-dark *:focus-visible,
+:root:not(.theme-light):not(.theme-contrast) *:focus-visible {
+  outline: 2px solid #38BDF8 !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+}
+
+.theme-contrast *:focus-visible {
+  outline: 3px solid #FFFF00 !important;
+  outline-offset: 3px !important;
+  box-shadow: none !important;
 }
 
 /* Base custom classes */
@@ -36,11 +50,11 @@ html {
 }
 
 .btn-primary {
-  @apply btn bg-gradient-to-r from-electric to-sky-400 text-obsidian-950 font-bold shadow-md hover:shadow-electric-glow hover:scale-[1.02] active:scale-[0.98];
+  @apply btn bg-gradient-to-r from-electric to-sky-400 text-obsidian-950 font-bold shadow-md hover:scale-[1.02] active:scale-[0.98];
 }
 
 .btn-flame {
-  @apply btn bg-gradient-to-r from-flame to-amber-500 text-white font-bold shadow-md hover:shadow-flame-glow hover:scale-[1.02] active:scale-[0.98];
+  @apply btn bg-gradient-to-r from-flame to-amber-500 text-white font-bold shadow-md hover:scale-[1.02] active:scale-[0.98];
 }
 
 .btn-secondary {
@@ -55,47 +69,49 @@ html {
   @apply btn border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:border-red-500;
 }
 
-/* Naruto / Shinobi Inspired Keyframe Animations */
+/* ==============================================================
+   SUBTLE SHINOBI ANIMATIONS (Calmed Down, Eye-Friendly)
+   ============================================================== */
 @keyframes chakraPulse {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3), inset 0 0 10px rgba(0, 210, 255, 0.15);
+    box-shadow: 0 0 6px rgba(0, 210, 255, 0.2);
   }
   50% {
-    box-shadow: 0 0 35px rgba(0, 210, 255, 0.65), inset 0 0 20px rgba(0, 210, 255, 0.35);
+    box-shadow: 0 0 12px rgba(0, 210, 255, 0.35);
   }
 }
 
 @keyframes kyuubiPulse {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(255, 107, 0, 0.35), inset 0 0 10px rgba(255, 107, 0, 0.2);
+    box-shadow: 0 0 6px rgba(255, 107, 0, 0.2);
   }
   50% {
-    box-shadow: 0 0 35px rgba(255, 107, 0, 0.7), inset 0 0 25px rgba(255, 107, 0, 0.4);
+    box-shadow: 0 0 12px rgba(255, 107, 0, 0.35);
   }
 }
 
 @keyframes rasenganSpin {
   0% {
-    transform: rotate(0deg) scale(0.96);
+    transform: rotate(0deg) scale(0.98);
   }
   50% {
-    transform: rotate(180deg) scale(1.04);
+    transform: rotate(180deg) scale(1.02);
   }
   100% {
-    transform: rotate(360deg) scale(0.96);
+    transform: rotate(360deg) scale(0.98);
   }
 }
 
 @keyframes jutsuSmoke {
   0% {
     opacity: 0;
-    transform: scale(0.6) translateY(20px);
-    filter: blur(8px);
+    transform: scale(0.8) translateY(12px);
+    filter: blur(4px);
   }
-  40% {
+  50% {
     opacity: 0.95;
-    transform: scale(1.08) translateY(-5px);
-    filter: blur(1px);
+    transform: scale(1.03) translateY(-2px);
+    filter: blur(0.5px);
   }
   100% {
     opacity: 1;
@@ -107,15 +123,15 @@ html {
 @keyframes scanLaser {
   0% {
     top: 0%;
-    opacity: 0.8;
+    opacity: 0.6;
   }
   50% {
     top: 96%;
-    opacity: 1;
+    opacity: 0.85;
   }
   100% {
     top: 0%;
-    opacity: 0.8;
+    opacity: 0.6;
   }
 }
 
@@ -124,34 +140,34 @@ html {
     height: 6px;
   }
   50% {
-    height: 26px;
+    height: 24px;
   }
 }
 
 .chakra-glow {
-  animation: chakraPulse 2.8s infinite ease-in-out;
+  animation: chakraPulse 3s infinite ease-in-out;
 }
 
 .kyuubi-glow {
-  animation: kyuubiPulse 2.6s infinite ease-in-out;
+  animation: kyuubiPulse 3s infinite ease-in-out;
 }
 
 .rasengan-spin {
-  animation: rasenganSpin 2.4s infinite linear;
+  animation: rasenganSpin 2.5s infinite linear;
 }
 
 .jutsu-smoke-entrance {
-  animation: jutsuSmoke 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: jutsuSmoke 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .scan-laser {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg, transparent, #00D2FF, #ffffff, #00D2FF, transparent);
-  box-shadow: 0 0 18px 3px rgba(0, 210, 255, 0.85);
-  animation: scanLaser 2.2s infinite ease-in-out;
+  box-shadow: 0 0 8px 1px rgba(0, 210, 255, 0.6);
+  animation: scanLaser 2.4s infinite ease-in-out;
   pointer-events: none;
   z-index: 10;
 }
@@ -165,98 +181,290 @@ html {
 }
 
 /* ==============================================================
-   NATURAL LIGHT MODE (Warm Ivory, Earthy Paper, Natural Slate)
+   DARK MODE TEXT ENHANCEMENT (High Contrast, Crisp & Non-Irritating)
+   ============================================================== */
+.theme-dark,
+:root:not(.theme-light):not(.theme-contrast) {
+  color-scheme: dark;
+  background-color: #090D16 !important;
+  color: #F1F5F9 !important;
+}
+
+.theme-dark .text-slate-400,
+:root:not(.theme-light):not(.theme-contrast) .text-slate-400,
+.theme-dark .text-slate-500,
+:root:not(.theme-light):not(.theme-contrast) .text-slate-500 {
+  color: #94A3B8 !important; /* WCAG AA accessible contrast against dark navy/obsidian */
+}
+
+.theme-dark .text-slate-300,
+:root:not(.theme-light):not(.theme-contrast) .text-slate-300 {
+  color: #CBD5E1 !important;
+}
+
+.theme-dark .text-white,
+:root:not(.theme-light):not(.theme-contrast) .text-white {
+  color: #F8FAFC !important;
+}
+
+/* ==============================================================
+   ADAPTIVE CLEAN LIGHT MODE (Pure Light Backgrounds, Dark Crisp Text)
    ============================================================== */
 .theme-light {
   color-scheme: light;
-  background-color: #F8F6F0 !important; /* Soft natural parchment/rice paper */
-  color: #1C1917 !important;           /* Warm stone/espresso text */
+  background-color: #F8FAFC !important; /* Modern crisp slate-50 */
+  color: #0F172A !important;           /* Deep readable slate-900 */
 }
 
+/* Container & Panels */
 .theme-light .panel {
   background-color: #FFFFFF !important;
-  border-color: #E7E2D8 !important;   /* Natural warm linen border */
-  color: #1C1917 !important;
-  box-shadow: 0 4px 18px -2px rgba(44, 38, 29, 0.06), 0 1px 3px rgba(44, 38, 29, 0.04) !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
 }
 
 .theme-light .panel:hover {
-  border-color: #D6CEBE !important;
+  border-color: #CBD5E1 !important;
 }
 
 .theme-light header {
-  background-color: rgba(248, 246, 240, 0.94) !important;
-  border-color: #E7E2D8 !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
 }
 
 .theme-light footer {
-  background-color: #F2EFE8 !important;
-  border-color: #E2DBD0 !important;
-  color: #57534E !important;
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+  color: #334155 !important;
 }
 
-.theme-light input, 
-.theme-light textarea, 
+/* ADAPTIVE TEXT IN LIGHT MODE: All headings and text become DARK and HIGH CONTRAST */
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light h4,
+.theme-light h5,
+.theme-light h6,
+.theme-light strong,
+.theme-light b,
+.theme-light .text-white,
+.theme-light .text-slate-100,
+.theme-light .text-slate-200 {
+  color: #0F172A !important; /* True crisp dark text */
+}
+
+.theme-light p,
+.theme-light span,
+.theme-light label,
+.theme-light td,
+.theme-light th,
+.theme-light .text-slate-300,
+.theme-light .text-slate-400 {
+  color: #1E293B !important; /* High contrast dark slate (contrast ratio > 7:1) */
+}
+
+.theme-light .text-slate-500,
+.theme-light .text-slate-600,
+.theme-light .text-gray-400,
+.theme-light .text-gray-500 {
+  color: #475569 !important; /* Clearly readable secondary text */
+}
+
+/* Nested dark boxes adapted to clean light containers */
+.theme-light .bg-navy-950,
+.theme-light .bg-navy-900,
+.theme-light .bg-navy-800,
+.theme-light .bg-navy-700,
+.theme-light .bg-obsidian-950,
+.theme-light .bg-obsidian-900,
+.theme-light .bg-obsidian-850,
+.theme-light .bg-obsidian-800 {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+/* Border overrides */
+.theme-light .border-navy-700,
+.theme-light .border-navy-600,
+.theme-light .border-navy-500,
+.theme-light .border-slate-700,
+.theme-light .border-slate-800 {
+  border-color: #E2E8F0 !important;
+}
+
+.theme-light .divide-navy-700\/60 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #E2E8F0 !important;
+}
+
+/* Inputs, textareas, selects */
+.theme-light input,
+.theme-light textarea,
 .theme-light select {
   background-color: #FFFFFF !important;
-  border-color: #D6CEBE !important;
-  color: #1C1917 !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
 }
 
-.theme-light input:focus, 
-.theme-light textarea:focus, 
+.theme-light input::placeholder,
+.theme-light textarea::placeholder {
+  color: #64748B !important;
+}
+
+.theme-light input:focus,
+.theme-light textarea:focus,
 .theme-light select:focus {
   border-color: #0284C7 !important;
+  outline: 2px solid #0284C7 !important;
+}
+
+/* Buttons in Light Mode */
+.theme-light .btn-primary {
+  background: linear-gradient(135deg, #0284C7, #0369A1) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.25) !important;
+}
+
+.theme-light .btn-primary:hover {
+  background: linear-gradient(135deg, #0369A1, #075985) !important;
+}
+
+.theme-light .btn-flame {
+  background: linear-gradient(135deg, #EA580C, #C2410C) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 1px 3px rgba(234, 88, 12, 0.25) !important;
 }
 
 .theme-light .btn-secondary {
-  background-color: #F3EFE7 !important;
-  border-color: #D6CEBE !important;
-  color: #292524 !important;
+  background-color: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
 }
 
 .theme-light .btn-secondary:hover {
-  background-color: #EBE4D8 !important;
+  background-color: #E2E8F0 !important;
+  border-color: #94A3B8 !important;
   color: #000000 !important;
 }
 
 .theme-light .btn-ghost {
-  color: #57534E !important;
+  color: #334155 !important;
 }
 
 .theme-light .btn-ghost:hover {
-  background-color: #EBE4D8 !important;
-  color: #1C1917 !important;
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
 }
 
-.theme-light .btn-primary {
-  background: linear-gradient(135deg, #0284C7, #0EA5E9) !important;
-  color: #FFFFFF !important;
+/* Accents in Light Mode (Pleasing, Non-Irritating Tones) */
+.theme-light .text-electric {
+  color: #0284C7 !important; /* Eye-friendly rich blue */
 }
 
-.theme-light .btn-flame {
-  background: linear-gradient(135deg, #EA580C, #F97316) !important;
-  color: #FFFFFF !important;
+.theme-light .text-flame {
+  color: #C2410C !important; /* Warm dark amber/terracotta */
 }
 
-/* HIGH-CONTRAST ACCESSIBILITY MODE */
+.theme-light .bg-electric\/10,
+.theme-light .bg-electric\/15,
+.theme-light .bg-electric\/20,
+.theme-light .bg-electric\/25 {
+  background-color: #E0F2FE !important;
+  color: #0369A1 !important;
+}
+
+.theme-light .bg-flame\/10,
+.theme-light .bg-flame\/15,
+.theme-light .bg-flame\/20,
+.theme-light .bg-flame\/25 {
+  background-color: #FFEDD5 !important;
+  color: #9A3412 !important;
+}
+
+.theme-light .bg-emerald-500\/10,
+.theme-light .bg-emerald-500\/15 {
+  background-color: #D1FAE5 !important;
+  color: #065F46 !important;
+}
+
+.theme-light .bg-sky-500\/15 {
+  background-color: #E0F2FE !important;
+  color: #0369A1 !important;
+}
+
+/* Modal overlays in Light Mode */
+.theme-light [role="dialog"] {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+}
+
+.theme-light [role="dialog"] .panel {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Table headers & rows in Light Mode */
+.theme-light thead,
+.theme-light thead th {
+  background-color: #F1F5F9 !important;
+  color: #334155 !important;
+  border-bottom: 1px solid #CBD5E1 !important;
+}
+
+.theme-light tbody tr:hover {
+  background-color: #F8FAFC !important;
+}
+
+/* Shinobi headband banner in Light Mode */
+.theme-light [class*="bg-gradient-to-r from-slate-800"] {
+  background: linear-gradient(to right, #E2E8F0, #CBD5E1, #E2E8F0) !important;
+  border-color: #94A3B8 !important;
+}
+
+.theme-light [class*="bg-gradient-to-r from-slate-800"] span {
+  color: #0F172A !important;
+}
+
+/* ==============================================================
+   HIGH-CONTRAST ACCESSIBILITY MODE (WCAG AAA Compliance)
+   ============================================================== */
 .theme-contrast {
   color-scheme: dark;
   background-color: #000000 !important;
   color: #FFFFFF !important;
 }
 
-.theme-contrast .panel, 
-.theme-contrast header, 
-.theme-contrast footer {
+.theme-contrast h1,
+.theme-contrast h2,
+.theme-contrast h3,
+.theme-contrast h4,
+.theme-contrast h5,
+.theme-contrast h6,
+.theme-contrast p,
+.theme-contrast span,
+.theme-contrast td,
+.theme-contrast th,
+.theme-contrast label,
+.theme-contrast div {
+  color: #FFFFFF !important;
+}
+
+.theme-contrast .panel,
+.theme-contrast header,
+.theme-contrast footer,
+.theme-contrast [role="dialog"] .panel {
   background-color: #000000 !important;
   color: #FFFFFF !important;
   border: 2px solid #FFFFFF !important;
+  box-shadow: none !important;
 }
 
-.theme-contrast button, 
-.theme-contrast input, 
-.theme-contrast textarea, 
+.theme-contrast button,
+.theme-contrast input,
+.theme-contrast textarea,
 .theme-contrast select {
   background-color: #000000 !important;
   color: #FFFFFF !important;
@@ -266,13 +474,20 @@ html {
 .theme-contrast .btn-primary {
   background: #00FFFF !important;
   color: #000000 !important;
+  font-weight: 900 !important;
   border: 2px solid #FFFFFF !important;
 }
 
 .theme-contrast .btn-flame {
-  background: #FFD700 !important;
+  background: #FFFF00 !important;
   color: #000000 !important;
+  font-weight: 900 !important;
   border: 2px solid #FFFFFF !important;
+}
+
+.theme-contrast .text-electric,
+.theme-contrast .text-flame {
+  color: #FFFF00 !important;
 }
 
 .theme-contrast a {
@@ -280,7 +495,9 @@ html {
   text-decoration: underline !important;
 }
 
-/* Reduced Motion Override */
+/* ==============================================================
+   REDUCED MOTION OVERRIDE
+   ============================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *:before, *:after {
     animation-duration: 0.01ms !important;

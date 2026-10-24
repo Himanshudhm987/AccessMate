@@ -168,7 +168,23 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-  }, [settings]);
+
+    const root = document.documentElement;
+    root.classList.remove('theme-light', 'theme-dark', 'theme-contrast', 'dark', 'light');
+    if (settings.theme === 'light') {
+      root.classList.add('theme-light', 'light');
+      document.body.style.backgroundColor = '#F8FAFC';
+      document.body.style.color = '#0F172A';
+    } else if (settings.theme === 'contrast') {
+      root.classList.add('theme-contrast', 'dark');
+      document.body.style.backgroundColor = '#000000';
+      document.body.style.color = '#FFFFFF';
+    } else {
+      root.classList.add('theme-dark', 'dark');
+      document.body.style.backgroundColor = '#090D16';
+      document.body.style.color = '#F1F5F9';
+    }
+  }, [settings.theme]);
 
   useEffect(() => {
     api('/auth/me')
@@ -567,15 +583,15 @@ export default function App() {
       ? 'theme-light'
       : settings.theme === 'contrast'
       ? 'theme-contrast'
-      : '';
+      : 'theme-dark';
 
   return (
     <div
       className={`min-h-screen flex flex-col relative transition-colors duration-300 ${themeClass}`}
       style={{ fontSize: `${settings.font}%` }}
     >
-      {/* Anime chakra particle background */}
-      <ChakraBackground enabled={settings.particles && settings.theme !== 'contrast'} />
+      {/* Subtle particle background - only active in dark mode */}
+      <ChakraBackground enabled={settings.particles && settings.theme === 'dark'} />
 
       {/* Substitution Jutsu Poof Overlay on Logout */}
       <JutsuPoofOverlay active={showSignoutPoof} text="Substitution Jutsu! Signed Out" />
@@ -1521,22 +1537,22 @@ export default function App() {
                 <Settings className="text-electric" /> Accessibility & Presentation Preferences
               </h1>
 
-              {/* Natural Light Mode Theme Selector */}
+              {/* Interface Theme Selector */}
               <div>
                 <label className="block text-xs font-semibold text-slate-300 mb-2">
-                  Interface Theme (Featuring Natural Paper Light Mode)
+                  Interface Theme
                 </label>
                 <div className="grid grid-cols-3 gap-3 text-xs font-bold">
                   {[
-                    ['dark', 'Dark Obsidian', 'border-navy-600 bg-obsidian-900 text-white'],
-                    ['light', 'Natural Paper', 'border-[#D6CEBE] bg-[#F8F6F0] text-[#1C1917]'],
+                    ['dark', 'Dark Mode', 'border-navy-600 bg-navy-900 text-slate-100'],
+                    ['light', 'Light Mode', 'border-slate-300 bg-white text-slate-900 shadow-sm'],
                     ['contrast', 'High Contrast', 'border-white bg-black text-yellow-300']
                   ].map(([themeVal, label, classes]) => (
                     <button
                       key={themeVal}
                       onClick={() => setSettings({ ...settings, theme: themeVal })}
                       className={`p-3 rounded-xl border text-center transition ${classes} ${
-                        settings.theme === themeVal ? 'ring-2 ring-electric' : 'opacity-70 hover:opacity-100'
+                        settings.theme === themeVal ? 'ring-2 ring-sky-400 font-black' : 'opacity-70 hover:opacity-100'
                       }`}
                     >
                       {label}
